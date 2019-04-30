@@ -1,0 +1,60 @@
+/* keyframs are custom animation functions in css */
+@keyframes moveInLeft {
+
+  /* initial state */
+  0% {
+    opacity: 0;
+    /* start 10rem to the left */
+    transform: translateX(-10rem);
+  }
+
+  80% {
+    transform: translateX(1rem);
+  }
+
+  /* final state */
+  100% {
+    opacity: 1;
+    /* end at the final location */
+    transform: translate(0)
+  }
+}
+
+
+@keyframes moveInRight {
+
+  /* initial state */
+  0% {
+    opacity: 0;
+    /* start 10rem to the left */
+    transform: translateX(10rem);
+  }
+
+  80% {
+    transform: translateX(-1rem);
+  }
+
+  /* final state */
+  100% {
+    opacity: 1;
+    /* end at the final location */
+    transform: translate(0)
+  }
+}
+
+@keyframes moveInBottom {
+
+  /* initial state */
+  0% {
+    opacity: 0;
+    /* start 10rem to the left */
+    transform: translateY(3rem);
+  }
+
+  /* final state */
+  100% {
+    opacity: 1;
+    /* end at the final location */
+    transform: translate(0)
+  }
+}

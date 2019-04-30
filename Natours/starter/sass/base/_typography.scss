@@ -1,0 +1,105 @@
+/* always put font inherited styling in the body */
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: $default-font-size;
+  line-height: 1.7;
+  color: $color-grey-dark;
+
+  box-sizing: border-box;
+
+}
+
+.heading-primary {
+  color: $color-white;
+  text-transform: uppercase;
+
+  /* for some reason sometimes the parent element will "shake" the visibility of 
+  the elements. The below is a hack fix to avoid that  
+  currently my broswer doesn't have this issue but others might*/
+  backface-visibility: hidden;
+  /* in this case margin pushes the button lower */
+  margin-bottom: 6rem;
+
+  
+
+  &--main {
+    /* block display creates an element that spreads the entire width of the parent element with a /n (newline) after it */
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+      /*starts fast and slows*/
+
+      @include respond(phone) {
+        letter-spacing: 1rem;
+        font-family: 5rem;
+      }
+
+      /* many other options */
+      /* animation-iteration-count: 3 */
+      /* animation-delay: 3s; */
+  }
+
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.74rem;
+    /* by using only "animation" css will look at the above specifics in the moveInLeft function
+   and copy them below in this moveInRight function with the listed values */
+    animation: moveInRight 1s ease-out;
+
+    @include respond(phone) {
+      letter-spacing: .5rem;
+      // font-family: .5rem;
+    }
+  }
+}
+
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  //this makes the element expand only as long as the text. block (default) would expand 100% width
+  display: inline-block;
+  background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+  //this allows background image to be seen only through the text
+  -webkit-background-clip: text;
+  //must have transparent text to see the backgroun-clip
+  color: transparent;
+  letter-spacing: .2rem;
+  //allows all transitions to happen over .2 seconds
+  transition: all .2s;
+
+  @include respond(tab-port) {
+    font-size: 3rem;
+  }
+
+  @include respond(phone) {
+    font-size: 2.5rem;
+  }
+
+  &:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: .5rem 1rem 2rem rgba($color-black,.2)
+  }
+
+}
+
+.heading-tertiary {
+  font-size: $default-font-size;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paragraph {
+  font-size: $default-font-size;
+  &:not(:last-child) {
+    margin-bottom: 3rem
+  }
+}

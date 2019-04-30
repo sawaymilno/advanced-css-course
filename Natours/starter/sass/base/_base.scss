@@ -1,0 +1,38 @@
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  //this defines the size of 1rem
+  font-size: 62.5%; //10px
+ // last declaration that works will be applied.
+  @include respond(tab-land) { // is width less than < 1200px?
+    font-size: 56.25%; //1 rem = 9px, 6/16 = 56.25% 
+  }
+
+  @include respond(tab-port) { // is width less than < 900px?
+    font-size: 50%; //1 rem = 8px, 8/16 = 50% 
+  }
+
+  @include respond(big-desktop) { // is width > 1800px?
+    font-size: 75%; //1rem = 12px, 12/16 = 75%
+  }
+  
+}
+
+/* always put font inherited styling in the body */
+body {
+  box-sizing: border-box;
+  padding: 3rem;
+
+  @include respond(tab-port) { // is width less than < 900px?
+padding: 0  }
+}
+// when selecting text
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}

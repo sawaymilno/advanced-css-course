@@ -1,0 +1,115 @@
+.btn {
+  &,
+  /* certain elements have different states (hover, clicked, visited, link) */
+  &:link,
+  /* this currently references BOTH the link and visited state */
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    /* top, right, bottom, left */
+    /* or top/bottom and left/right */
+    padding: 1.5rem 4rem;
+    /* must display as inline block to allow for proper positioning of an inline element */
+    display: inline-block;
+    border-radius: 10rem;
+    /* references all movements in this state and slows the timing to .2 seconds */
+    transition: all .2s;
+    /* necessary to set the ::after btn positioning with absolute */
+    position: relative;
+
+    // Change for the <button> element
+    border: none;
+    cursor: pointer;
+  }
+
+  &:hover,
+  &:focus {
+    transform: translateY(-.3rem);
+    /* x axis, then y axis, then how much blur for each, then the color and opacity   */
+    box-shadow: 0 1rem 2rem rgba($color-black, .2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      /* transform: scale(1.5); */
+      opacity: 0;
+    }
+  }
+
+  &:active {
+    /* relative to the initial state not current state */
+    transform: translateY(-.1rem);
+    box-shadow: 0 .5rem 1rem rgba($color-black, .2)
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      /* emulate the parent elements with the same color */
+      background-color: $color-white;
+    }
+  }
+
+  &--green {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &::after {
+      /* emulate the parent elements with the same color */
+      background-color: $color-primary;
+    }
+  }
+
+  /* psuedo elements = elements that look exactly like the element and it changes due to styling and hten
+hides behind the original element */
+  &::after {
+    content: "";
+    /* basically treated like a child of the parent element so set to same size */
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    /* aboslutely positions based on the parent element with "relative */
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* position if one is on top of the other. -1 means its one below it's parent element */
+    z-index: -1;
+    /* all state changes must be set on the initial state which is this state in this case */
+    transition: all .4s;
+  }
+
+  &--animated {
+    /* using the same shorthand as above with moveInRight */
+    /* animation name, animation time, animation timing function, animation delay */
+    animation: moveInBottom .5s ease-out .75s;
+    /* set to styles of 0% before the animations start */
+    animation-fill-mode: backwards;
+  }
+
+}
+
+.btn-text {
+  &:link,
+  &:visited {
+    font-size: $default-font-size;
+    color: $color-primary;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid $color-primary;
+    padding: 3px;
+    transition: all .2s;
+  }
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-white;
+    box-shadow: 0 1rem 2rem rgba($color-black, .15);
+    transform: translateY(-2px);
+  }
+  &:active {
+    box-shadow: 0 .5rem 1rem rgba($color-black, .15);
+    transform: translateY(0);
+  }
+}
